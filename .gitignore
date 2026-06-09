@@ -1,0 +1,16 @@
+# Secret keys - never commit
+.env
+frontend/.streamlit/secrets.toml
+
+# Virtual environment
+venv/
+
+.DS_Store
+__pycache__/
+# Datasets
+*.csv
+# Logs
+*.log
+# ML models
+*.safetensors
+*.pkl
