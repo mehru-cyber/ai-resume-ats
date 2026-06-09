@@ -94,7 +94,7 @@ streamlit run frontend/streamlit_app.py
 
 The app opens at `http://localhost:8501`.
 
-## Notes for students
+## Notes 
 
 - **Never commit `.env` or `secrets.toml`** — they hold API keys. Both are in `.gitignore`; check before you push.
 - The first run downloads the Sentence Transformer model (~80 MB). It's cached afterwards.
