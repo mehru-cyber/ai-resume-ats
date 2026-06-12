@@ -18,7 +18,7 @@ python-multipart>=0.0.9      # required by FastAPI for File/Form uploads
 python-dotenv>=1.0
 
 # ── Backend: NLP / ML ──
-spacy>=3.7,<4.0
+spacy==3.7.5
 sentence-transformers>=2.5
 numpy>=1.26
 rapidfuzz>=3.6
@@ -46,3 +46,4 @@ supabase>=2.4                # frontend auth client (email/password + OAuth)
 
 https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.7.1/en_core_web_md-3.7.1-py3-none-any.whl
 https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
+
