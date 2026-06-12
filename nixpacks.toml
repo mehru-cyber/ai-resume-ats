@@ -1,0 +1,5 @@
+[phases.setup]
+aptPkgs = ["libmagic1", "libmagic-dev"]
+
+[start]
+cmd = "uvicorn backend.main:app --host 0.0.0.0 --port $PORT"
