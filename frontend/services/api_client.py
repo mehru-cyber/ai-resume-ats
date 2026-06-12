@@ -4,7 +4,7 @@ import requests
 import streamlit as st
 
 
-DEFAULT_BACKEND_URL = "ai-resume-ats-production.up.railway.app"
+DEFAULT_BACKEND_URL = "https://ai-resume-ats-production.up.railway.app"
 
 
 def _backend_url() -> str:
