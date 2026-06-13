@@ -29,10 +29,13 @@ def analyze_resume(
     access_token: str,
     job_description: str = "",
 ) -> Dict[str, Any]:
+
     files = {
-        "resume": (resume_file.name, resume_file.getvalue(), resume_file.type),
+        "resume": (resume_file.name, resume_file, resume_file.type),
     }
+
     data = {"job_description": job_description}
+
     response = requests.post(
         f"{_backend_url()}/api/v1/analyze-resume",
         files=files,
@@ -40,6 +43,7 @@ def analyze_resume(
         headers=_auth_headers(access_token),
         timeout=180,
     )
+
     response.raise_for_status()
     return response.json()
 
