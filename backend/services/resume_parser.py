@@ -1,6 +1,5 @@
 import io
-import magic
-from typing import Tuple, Optional, Tuple
+from typing import Tuple, Optional
 
 import pdfplumber
 from docx import Document
@@ -41,9 +40,24 @@ def validate_file(file_data:bytes, filename:str)->Tuple[bool, str, Optional[str]
         return False, 'uploade file is empty...please check the file you have uploaded and try again'
     
     try:
+        import magic
         mime_type=magic.from_buffer(file_data, mime=True)
     except Exception as e:
-        return False, f"error deteminin the file type : {e}", None
+        log_warning(f"magic.from_buffer failed (likely missing libmagic), falling back to mimetypes: {e}", context="validate_file")
+        import mimetypes
+        import os
+        mime_type, _ = mimetypes.guess_type(filename)
+        if not mime_type:
+            ext = os.path.splitext(filename)[1].lower()
+            ext_to_mime = {
+                '.pdf': 'application/pdf',
+                '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                '.doc': 'application/msword'
+            }
+            mime_type = ext_to_mime.get(ext)
+            
+        if not mime_type:
+            return False, f"error determining the file type (magic failed and no valid extension): {e}", None
     
     if mime_type not in SUPPORTED_MIME_TYPES:
         supported=', '.join(SUPPORTED_MIME_TYPES.keys()).upper()
