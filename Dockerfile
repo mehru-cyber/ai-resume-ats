@@ -16,11 +16,10 @@ WORKDIR /app
 COPY requirements.txt .
 
 RUN pip install --no-cache-dir spacy>=3.7
-
+RUN pip install --no-cache-dir sentence-transformers>=2.5
 RUN pip install --no-cache-dir -r requirements.txt
 
 RUN python -m spacy download en_core_web_md
-
 RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 
 COPY . .
